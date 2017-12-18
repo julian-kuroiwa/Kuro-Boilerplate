@@ -1,0 +1,22 @@
+{
+  "name": "kuro-boilerplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/julian-kuroiwa/Kuro-Boilerplate.git"
+  },
+  "keywords": [
+    "boilerplate"
+  ],
+  "author": "Julian Kuroiwa <julian.kuroiwa@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/julian-kuroiwa/Kuro-Boilerplate/issues"
+  },
+  "homepage": "https://github.com/julian-kuroiwa/Kuro-Boilerplate#readme"
+}
