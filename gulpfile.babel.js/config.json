@@ -1,0 +1,67 @@
+{
+    "root": {
+        "src": "./src/",
+        "dest": "./dist/",
+        "nodeModules": "./node_modules"
+    },
+
+    "tasks": {
+        "browserSync": {
+            "server": {
+                "baseDir": "./dist/"
+            }
+        },
+
+        "styles": {
+            "src": "styles",
+            "dest": "styles",
+            "autoprefixer": {
+                "cascade": false
+            },
+            "extensions": ["sass", "scss", "css"]
+        },
+
+        "html": {
+            "src": "html",
+            "dest": "./",
+            "extensions": ["html", "json"],
+            "excludeFolders": ["data", "components", "macros"]
+        },
+
+        "scripts": {
+            "src": "scripts",
+            "dest": "scripts",
+            "extensions": ["js"]
+        },
+
+        "images": {
+            "src": "img",
+            "dest": "img",
+            "extensions": ["jpg", "png", "svg", "gif"]
+        },
+
+        "video": {
+            "src": "video",
+            "dest": "video",
+            "extensions": ["mp4", "gif"]
+        },
+
+        "icons": {
+            "src": "icons",
+            "dest": "img",
+            "extensions": ["svg", "png"]
+        },
+
+        "fonts": {
+            "src": "fonts",
+            "dest": "fonts",
+            "extensions": ["woff2", "woff", "eot", "ttf", "svg"]
+        },
+
+        "data": {
+            "src": "data",
+            "dest": "data",
+            "extensions": ["json"]
+        }
+    }
+}
