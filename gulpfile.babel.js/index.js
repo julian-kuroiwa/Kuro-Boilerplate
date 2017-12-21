@@ -40,7 +40,7 @@ gulp.task('html', () => {
         .pipe(browserSync.stream({ once: true }));
 });
 
-gulp.task('image', () => {
+gulp.task('images', () => {
     return gulp.src(paths.img.src)
         .pipe(plumber())
         .pipe(imagemin({
@@ -78,13 +78,13 @@ gulp.task('browser-sync', () => {
 gulp.task('watch', () => {
     gulp.watch(paths.html.src, { debounceDelay: 300 }, ['html']);
     gulp.watch(paths.css.src, ['sass']);
-    gulp.watch(paths.img.src, ['image']);
+    gulp.watch(paths.img.src, ['images']);
 });
 
 gulp.task('build', ['clean'], () => {
     gulp.start('html');
     gulp.start('sass');
-    gulp.start('image');
+    gulp.start('images');
 });
 
 gulp.task('default', ['watch', 'browser-sync']);
