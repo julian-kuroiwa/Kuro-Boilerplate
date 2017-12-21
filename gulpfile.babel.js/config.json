@@ -12,9 +12,9 @@
             }
         },
 
-        "styles": {
-            "src": "styles",
-            "dest": "styles",
+        "css": {
+            "src": "css",
+            "dest": "css",
             "autoprefixer": {
                 "cascade": false
             },

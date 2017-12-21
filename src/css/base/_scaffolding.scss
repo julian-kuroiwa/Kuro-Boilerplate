@@ -1,0 +1,126 @@
+* {
+    box-sizing: border-box;
+    outline: none;
+}
+
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+    font-family: $font-base-family;
+    font-size: $font-base-size;
+    line-height: $line-base-line-height;
+    color: $font-base-family;
+    background-color: $body-bg;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+input,
+button,
+select,
+textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+a {
+    color: $link-color;
+    text-decoration: none;
+    transition: color 0.2s linear;
+    &:hover,
+    &:focus {
+        color: $link-hover-color;
+        text-decoration: $link-hover-decoration;
+        text-decoration: none;
+    }
+}
+
+figure {
+    margin: 0;
+}
+
+img {
+    vertical-align: middle;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: normal;
+}
+
+// Only display content to screen readers
+//
+// See: http://a11yproject.com/posts/how-to-hide-content
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+// Use in conjunction with .sr-only to only display content when it's focused.
+// Useful for "Skip to main content" links; see http://www.w3.org/TR/2013/NOTE-WCAG20-TECHS-20130905/G1
+// Credit: HTML5 Boilerplate
+.sr-only-focusable {
+    &:active,
+    &:focus {
+        position: static;
+        width: auto;
+        height: auto;
+        margin: 0;
+        overflow: visible;
+        clip: auto;
+    }
+}
+
+// iOS "clickable elements" fix for role="button"
+//
+// Fixes "clickability" issue (and more generally, the firing of events such as focus as well)
+// for traditionally non-focusable elements with role="button"
+// see https://developer.mozilla.org/en-US/docs/Web/Events/click#Safari_Mobile
+[role="button"] {
+    cursor: pointer;
+}
+
+.only-mobile {
+    @include min-width(768) {
+        display: none !important;
+    }
+}
+
+.only-desk {
+    @include max-width(767) {
+        display: none !important;
+    }
+}
+
+.stroke {
+    text-decoration: line-through;
+}
+
+// DEBUG
+* {
+    // outline: 1px solid red !important;
+}
+
+.no-margin-bottom {
+    margin-bottom: 0!important;
+}

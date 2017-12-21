@@ -1,0 +1,97 @@
+@font-face {
+    font-family: 'Museo Sans 300';
+    src: url('#{$path-font}Museo_Sans_300.eot');
+    src: url('#{$path-font}Museo_Sans_300.eot?#iefix') format('embedded-opentype'),
+         url('#{$path-font}Museo_Sans_300.woff') format('woff'),
+         url('#{$path-font}Museo_Sans_300.svg') format('svg'),
+         url('#{$path-font}Museo_Sans_300.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Museo Sans 500';
+    src: url('#{$path-font}Museo_Sans_500.eot');
+    src: url('#{$path-font}Museo_Sans_500.eot?#iefix') format('embedded-opentype'),
+         url('#{$path-font}Museo_Sans_500.woff') format('woff'),
+         url('#{$path-font}Museo_Sans_500.svg') format('svg'),
+         url('#{$path-font}Museo_Sans_500.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Museo Sans 700';
+    src: url('#{$path-font}Museo_Sans_700.eot');
+    src: url('#{$path-font}Museo_Sans_700.eot?#iefix') format('embedded-opentype'),
+         url('#{$path-font}Museo_Sans_700.woff') format('woff'),
+         url('#{$path-font}Museo_Sans_700.svg') format('svg'),
+         url('#{$path-font}Museo_Sans_700.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Museo Slab 300';
+    src: url('#{$path-font}Museo_Slab_300.eot');
+    src: url('#{$path-font}Museo_Slab_300.eot?#iefix') format('embedded-opentype'),
+         url('#{$path-font}Museo_Slab_300.woff') format('woff'),
+         url('#{$path-font}Museo_Slab_300.woff2') format('woff2'),
+         url('#{$path-font}Museo_Slab_300.svg') format('svg'),
+         url('#{$path-font}Museo_Slab_300.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Museo Slab 500';
+    src: url('#{$path-font}Museo_Slab_500.eot');
+    src: url('#{$path-font}Museo_Slab_500.eot?#iefix') format('embedded-opentype'),
+         url('#{$path-font}Museo_Slab_500.woff') format('woff'),
+         url('#{$path-font}Museo_Slab_500.woff2') format('woff2'),
+         url('#{$path-font}Museo_Slab_500.svg') format('svg'),
+         url('#{$path-font}Museo_Slab_500.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Museo Slab 700';
+    src: url('#{$path-font}Museo_Slab_700.eot');
+    src: url('#{$path-font}Museo_Slab_700.eot?#iefix') format('embedded-opentype'),
+         url('#{$path-font}Museo_Slab_700.woff') format('woff'),
+         url('#{$path-font}Museo_Slab_700.woff2') format('woff2'),
+         url('#{$path-font}Museo_Slab_700.svg') format('svg'),
+         url('#{$path-font}Museo_Slab_700.ttf') format('truetype');
+}
+
+
+@font-face {
+    font-family: 'Roboto-Bd';
+    src: url('../fonts/Roboto-Bold.eot');
+    src: url('../fonts/Roboto-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Roboto-Bold.woff') format('woff'),
+        url('../fonts/Roboto-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto-Lt';
+    src: url('../fonts/Roboto-Light.eot');
+    src: url('../fonts/Roboto-Light.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Roboto-Light.woff') format('woff'),
+        url('../fonts/Roboto-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto-Md';
+    src: url('../fonts/Roboto-Medium.eot');
+    src: url('../fonts/Roboto-Medium.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Roboto-Medium.woff') format('woff'),
+        url('../fonts/Roboto-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+	font-family: 'Roboto-Rg';
+	src: url('../fonts/Roboto-Regular.eot');
+	src: url('../fonts/Roboto-Regular.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/Roboto-Regular.woff') format('woff'),
+		url('../fonts/Roboto-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}

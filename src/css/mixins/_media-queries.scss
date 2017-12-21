@@ -1,0 +1,73 @@
+@mixin max-width($w) {
+	@media screen and (max-width: $w + px) {
+		@content;
+	}
+}
+
+@mixin min-width($w) {
+	@media screen and (min-width: $w + px) {
+		@content;
+	}
+}
+
+@mixin max-height($w) {
+	@media screen and (max-height: $w + px) {
+		@content;
+	}
+}
+
+@mixin min-height($w) {
+	@media screen and (min-height: $w + px) {
+		@content;
+	}
+}
+
+
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
+
+@mixin desktop-large {
+  @media (min-width: #{$desktop-large-width}) {
+    @content;
+  }
+}
+
+// DEVICE LIST //
+@mixin xs() {
+    @media(max-width: 767px) {
+        @content;
+    }
+}
+
+@mixin sm() {
+    @media(min-width: 768px)and(max-width: 991px) {
+        @content;
+    }
+}
+
+@mixin md() {
+    @media(min-width: 992px)and(max-width: 1199px) {
+        @content;
+    }
+}
+
+@mixin min-width($size) {
+    @media(min-width: $size) {
+        @content;
+    }
+}
+
+@mixin lg() {
+    @media(min-width: 1200px) {
+        @content;
+    }
+}

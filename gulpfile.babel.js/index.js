@@ -7,25 +7,48 @@ import plumber from 'gulp-plumber';
 import nunjucksRender from 'gulp-nunjucks-render';
 import path from 'path';
 import del from 'del';
+import sass from 'gulp-sass';
+import sourcemaps from 'gulp-sourcemaps';
+import autoprefixer from 'gulp-autoprefixer';
+import cleanCSS from 'gulp-clean-css';
 import CONFIG from './config';
 
 const exclude = path.normalize('!**/{' + CONFIG.tasks.html.excludeFolders.join(',') + '}/**');
 
 const paths = {
-    src: [path.join(CONFIG.root.src, CONFIG.tasks.html.src, '/**/*.html'), exclude],
-    dest: path.join(CONFIG.root.dest, CONFIG.tasks.html.dest)
+    html: {
+        src: [path.join(CONFIG.root.src, CONFIG.tasks.html.src, '/**/*.html'), exclude],
+        dest: path.join(CONFIG.root.dest, CONFIG.tasks.html.dest)
+    },
+    css: {
+        src: path.join(CONFIG.root.src, CONFIG.tasks.css.src, '/**/*.{' + CONFIG.tasks.css.extensions + '}'),
+        dest: path.join(CONFIG.root.dest, CONFIG.tasks.css.dest)
+    }
 };
 
 gulp.task('html', () => {
-    return gulp.src(paths.src)
+    return gulp.src(paths.html.src)
         .pipe(plumber())
         .pipe(nunjucksRender({
             path: ['src/html']
         }))
         .pipe(htmlmin({ collapseWhitespace: true, removeComments: true }))
-        .pipe(gulp.dest(paths.dest))
+        .pipe(gulp.dest(paths.html.dest))
         .pipe(browserSync.stream({ once: true }));
 });
+
+gulp.task('sass', () => {
+    return gulp.src(paths.css.src)
+        .pipe(sourcemaps.init())
+        .pipe(sass({
+            outputStyle: 'expanded'
+        }).on('error', sass.logError))
+        .pipe(autoprefixer())
+        .pipe(cleanCSS())
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest(paths.css.dest))
+        .pipe(browserSync.stream());
+})
 
 gulp.task('clean', () => {
     return del('build/');
@@ -40,11 +63,13 @@ gulp.task('browser-sync', () => {
 });
 
 gulp.task('watch', () => {
-    gulp.watch('src/html/**/*.html', ['html']);
+    gulp.watch(paths.html.src, ['html']);
+    gulp.watch(paths.css.src, ['sass']);
 });
 
 gulp.task('build', ['clean'], () => {
     gulp.start('html');
+    gulp.start('sass');
 });
 
 gulp.task('default', ['watch', 'browser-sync']);
