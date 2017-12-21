@@ -56,7 +56,7 @@ With the commands above, you have everything to start.
 
 Those folders and file will change during the project.
 
-### Code Standarts
+### Code Standards
 
 This project uses [eslint](http://eslint.org/) and [.editorconfig](https://github.com/Qualy-org/qualy-front/blob/master/.editorconfig) is defined to have indent_size of **4 spaces**.
 
