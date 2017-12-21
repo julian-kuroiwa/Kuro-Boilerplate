@@ -30,6 +30,7 @@
         "gulp-autoprefixer": "^4.0.0",
         "gulp-clean-css": "^3.9.0",
         "gulp-htmlmin": "^3.0.0",
+        "gulp-imagemin": "^4.0.0",
         "gulp-nunjucks-render": "^2.2.1",
         "gulp-plumber": "^1.1.0",
         "gulp-sass": "^3.1.0",
