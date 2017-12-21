@@ -58,7 +58,7 @@ Those folders and file will change during the project.
 
 ### Code Standards
 
-This project uses [eslint](http://eslint.org/) and [.editorconfig](https://github.com/Qualy-org/qualy-front/blob/master/.editorconfig) is defined to have indent_size of **4 spaces**.
+This project uses [eslint](http://eslint.org/) and [.editorconfig](https://github.com/julian-kuroiwa/Kuro-Boilerplate/blob/master/.editorconfig) is defined to have indent_size of **4 spaces**.
 
 This project also uses [Husky](https://github.com/typicode/husky) to prevent commit and push messy and wrong code.
 
