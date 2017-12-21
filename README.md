@@ -51,7 +51,7 @@ With the commands above, you have everything to start.
     │   └── styles.scss
     └── html
     │   ├── components/*.html
-    │   └── index.html
+    └── └── index.html
 ```
 
 Those folders and file will change during the project.
