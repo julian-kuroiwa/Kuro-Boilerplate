@@ -1,5 +1,8 @@
 # Kuro Boilerplate
 
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/julian-kuroiwa/Kuro-Boilerplate/blob/master/LICENSE.md)
+[![GitHub contributors](https://img.shields.io/github/contributors/cdnjs/cdnjs.svg)](https://github.com/julian-kuroiwa/Kuro-Boilerplate/graphs/contributors)
+
 This project uses ES6, SASS, Gulp and Browsersync.
 
 Maybe you want to read about them:
@@ -33,8 +36,10 @@ With the commands above, you have everything to start.
 ├── README.md
 ├── build
 │   ├── css/
+    │   └── styles.css
 │   ├── img/
-│   ├── js/
+│   ├── scripts/
+    │   └── main.min.js
 │   ├── index.html
 ├── gulpfile.babel.js
 │   ├── config.json
@@ -42,7 +47,8 @@ With the commands above, you have everything to start.
 ├── package.json
 └── src
     ├── img/
-    ├── js/
+    ├── scripts/
+    │   └── main.js
     ├── css
     │   ├── base/*.scss
     │   ├── components/*.scss
