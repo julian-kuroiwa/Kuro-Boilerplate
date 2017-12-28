@@ -35,10 +35,10 @@ With the commands above, you have everything to start.
 ├── README.md
 ├── build
 │   ├── css/
-    │   └── styles.css
+│   │   └── styles.css
 │   ├── img/
 │   ├── scripts/
-    │   └── main.min.js
+│   │   └── main.min.js
 │   ├── index.html
 ├── gulpfile.babel.js
 │   ├── config.json
