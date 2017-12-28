@@ -1,7 +1,6 @@
 # Kuro Boilerplate
 
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/julian-kuroiwa/Kuro-Boilerplate/blob/master/LICENSE.md)
-[![GitHub contributors](https://img.shields.io/github/contributors/cdnjs/cdnjs.svg)](https://github.com/julian-kuroiwa/Kuro-Boilerplate/graphs/contributors)
 
 This project uses ES6, SASS, Gulp and Browsersync.
 
