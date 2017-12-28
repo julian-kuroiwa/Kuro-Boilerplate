@@ -1,10 +1,12 @@
 {
     "name": "kuro-boilerplate",
     "version": "1.0.0",
-    "description": "",
+    "description": "A simple boilerplate with ES6, Gulp, SASS and Browsersync.",
     "main": "index.js",
     "scripts": {
         "lint": "./node_modules/.bin/eslint src/*.js",
+        "fix": "./node_modules/.bin/eslint src --fix",
+        "precommit": "npm run lint",
         "prepush": "npm run lint"
     },
     "repository": {

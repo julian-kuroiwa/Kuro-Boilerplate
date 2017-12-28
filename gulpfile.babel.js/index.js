@@ -38,6 +38,10 @@ const paths = {
         src: path.join(CONFIG.root.src, CONFIG.tasks.scripts.src, '/**'),
         dest: path.join(CONFIG.root.dest, CONFIG.tasks.scripts.dest)
     },
+    fonts: {
+        src: path.join(CONFIG.root.src, CONFIG.tasks.fonts.src, '/**/*'),
+        dest: path.join(CONFIG.root.dest, CONFIG.tasks.fonts.dest)
+    },
     build: path.join(CONFIG.root.dest, '**/*')
 };
 
