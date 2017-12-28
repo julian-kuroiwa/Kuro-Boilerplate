@@ -14,11 +14,6 @@ html {
 }
 
 body {
-    font-family: $font-base-family;
-    font-size: $font-base-size;
-    line-height: $line-base-line-height;
-    color: $font-base-family;
-    background-color: $body-bg;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
@@ -34,13 +29,10 @@ textarea {
 }
 
 a {
-    color: $link-color;
     text-decoration: none;
     transition: color 0.2s linear;
     &:hover,
     &:focus {
-        color: $link-hover-color;
-        text-decoration: $link-hover-decoration;
         text-decoration: none;
     }
 }
