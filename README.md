@@ -7,7 +7,7 @@ This project uses ES6, SASS, Nunjucks, Gulp and Browsersync.
 Maybe you want to read about them:
 - [GulpJS](http://gulpjs.com/)
 - [Sass](http://sass-lang.com/)
-- [Nunjucks](https://jrstylle.github.io/jrstylle/)
+- [Nunjucks](https://mozilla.github.io/nunjucks/)
 - [Browsersync](https://www.browsersync.io/)
 
 ### Installation
