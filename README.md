@@ -2,11 +2,12 @@
 
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/julian-kuroiwa/Kuro-Boilerplate/blob/master/LICENSE.md)
 
-This project uses ES6, SASS, Gulp and Browsersync.
+This project uses ES6, SASS, Nunjucks, Gulp and Browsersync.
 
 Maybe you want to read about them:
 - [GulpJS](http://gulpjs.com/)
 - [Sass](http://sass-lang.com/)
+- [Nunjucks](https://mozilla.github.io/nunjucks/)
 - [Browsersync](https://www.browsersync.io/)
 
 ### Installation
