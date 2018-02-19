@@ -23,7 +23,8 @@ const exclude = path.normalize('!**/{' + CONFIG.tasks.html.excludeFolders.join('
 const paths = {
     html: {
         src: [path.join(CONFIG.root.src, CONFIG.tasks.html.src, '/**/*.html'), exclude],
-        dest: path.join(CONFIG.root.dest, CONFIG.tasks.html.dest)
+        dest: path.join(CONFIG.root.dest, CONFIG.tasks.html.dest),
+        allFiles: path.join(CONFIG.root.src, CONFIG.tasks.html.src, '/**/*.html')
     },
     css: {
         src: path.join(CONFIG.root.src, CONFIG.tasks.css.src, '/**/*.{' + CONFIG.tasks.css.extensions + '}'),
@@ -36,7 +37,9 @@ const paths = {
     scripts: {
         entryPoint: path.join(CONFIG.root.src, CONFIG.tasks.scripts.src, 'main.js'),
         src: path.join(CONFIG.root.src, CONFIG.tasks.scripts.src, '/**'),
-        dest: path.join(CONFIG.root.dest, CONFIG.tasks.scripts.dest)
+        dest: path.join(CONFIG.root.dest, CONFIG.tasks.scripts.dest),
+        allFiles: path.join(CONFIG.root.src, CONFIG.tasks.scripts.src, '/**/*.js')
+        
     },
     fonts: {
         src: path.join(CONFIG.root.src, CONFIG.tasks.fonts.src, '/**/*'),
@@ -103,10 +106,10 @@ gulp.task('browser-sync', () => {
 });
 
 gulp.task('watch', () => {
-    gulp.watch(paths.html.src, { debounceDelay: 300 }, ['html']);
+    gulp.watch(paths.html.allFiles, { debounceDelay: 300 }, ['html']);
     gulp.watch(paths.css.src, ['sass']);
     gulp.watch(paths.img.src, ['images']);
-    gulp.watch(paths.scripts.entryPoint, ['js']);
+    gulp.watch(paths.scripts.allFiles, ['js']);
 });
 
 gulp.task('build', ['clean'], () => {
