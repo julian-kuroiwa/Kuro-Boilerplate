@@ -26,9 +26,9 @@ const paths = {
         dest: path.join(CONFIG.root.dest, CONFIG.tasks.html.dest),
         allFiles: path.join(CONFIG.root.src, CONFIG.tasks.html.src, '/**/*.html')
     },
-    css: {
-        src: path.join(CONFIG.root.src, CONFIG.tasks.css.src, '/**/*.{' + CONFIG.tasks.css.extensions + '}'),
-        dest: path.join(CONFIG.root.dest, CONFIG.tasks.css.dest)
+    styles: {
+        src: path.join(CONFIG.root.src, CONFIG.tasks.styles.src, '/**/*.{' + CONFIG.tasks.styles.extensions + '}'),
+        dest: path.join(CONFIG.root.dest, CONFIG.tasks.styles.dest)
     },
     img: {
         src: path.join(CONFIG.root.src, CONFIG.tasks.images.src, '/**'),
@@ -68,14 +68,14 @@ gulp.task('images', () => {
 });
 
 gulp.task('sass', () => {
-    return gulp.src(paths.css.src)
+    return gulp.src(paths.styles.src)
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(sass({ outputStyle: 'expanded' }).on('error', sass.logError))
         .pipe(autoprefixer())
         .pipe(cleanCSS())
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest(paths.css.dest));
+        .pipe(gulp.dest(paths.styles.dest));
 });
 
 gulp.task('js', () => {
@@ -107,7 +107,7 @@ gulp.task('browser-sync', () => {
 
 gulp.task('watch', () => {
     gulp.watch(paths.html.allFiles, { debounceDelay: 300 }, ['html']);
-    gulp.watch(paths.css.src, ['sass']);
+    gulp.watch(paths.styles.src, ['sass']);
     gulp.watch(paths.img.src, ['images']);
     gulp.watch(paths.scripts.allFiles, ['js']);
 });
