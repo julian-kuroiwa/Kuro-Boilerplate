@@ -14,8 +14,12 @@ import autoprefixer from 'gulp-autoprefixer';
 import cleanCSS from 'gulp-clean-css';
 import browserify from 'browserify';
 import uglify from 'gulp-uglify';
+import useref from 'gulp-useref';
 import source from 'vinyl-source-stream';
 import buffer from 'vinyl-buffer';
+import debug from 'gulp-debug';
+import wait from 'gulp-wait';
+
 import CONFIG from './config';
 
 const exclude = path.normalize('!**/{' + CONFIG.tasks.html.excludeFolders.join(',') + '}/**');
@@ -39,7 +43,7 @@ const paths = {
         src: path.join(CONFIG.root.src, CONFIG.tasks.scripts.src, '/**'),
         dest: path.join(CONFIG.root.dest, CONFIG.tasks.scripts.dest),
         allFiles: path.join(CONFIG.root.src, CONFIG.tasks.scripts.src, '/**/*.js')
-        
+
     },
     fonts: {
         src: path.join(CONFIG.root.src, CONFIG.tasks.fonts.src, '/**/*'),
@@ -52,6 +56,7 @@ gulp.task('html', () => {
     return gulp.src(paths.html.src)
         .pipe(plumber())
         .pipe(nunjucksRender({ path: ['src/html'] }))
+        .pipe(useref({ searchPath: './node_modules'}))
         .pipe(htmlmin({ collapseWhitespace: true, removeComments: true }))
         .pipe(gulp.dest(paths.html.dest));
 });
