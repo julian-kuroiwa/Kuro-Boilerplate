@@ -74,7 +74,7 @@ This project also uses [Husky](https://github.com/typicode/husky) to prevent com
 - `gulp html`: compile html files
 - `gulp sass`: compile sass files
 - `gulp images`: compress image files
-- `gulp browser-sync`: inicialize a server
+- `gulp browser-sync`: initialize a server
 - `gulp watch`: call for watch files
 - `gulp build`: run all tasks and deploy files to gh-pages
 
