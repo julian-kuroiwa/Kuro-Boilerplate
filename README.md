@@ -38,7 +38,7 @@ With the commands above, you have everything to start.
 ├── README.md
 ├── dev/build
 │   ├── css/
-│   │   └── styles.css
+│   │   └── main.min.css
 │   ├── img/
 │   ├── scripts/
 │   │   └── main.min.js
