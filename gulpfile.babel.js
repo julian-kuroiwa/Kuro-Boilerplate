@@ -1,12 +1,14 @@
 import gulp from 'gulp';
 import notify from 'gulp-notify';
 import nunjucks from 'gulp-nunjucks-render';
+import htmlmin from 'gulp-htmlmin';
 import sass from 'gulp-sass';
+import postcss from 'gulp-postcss';
 import sourcemaps from 'gulp-sourcemaps';
-import autoprefixer from 'gulp-autoprefixer';
 import plumber from 'gulp-plumber';
 import imagemin from 'gulp-imagemin';
 import gulpif from 'gulp-if';
+import gulprename from 'gulp-rename';
 import del from 'del';
 import browsersync from 'browser-sync';
 import webpackStream from 'webpack-stream';
@@ -18,7 +20,7 @@ import webpackConfig from './webpack.config';
 
 const paths = {
 	src: './src',
-	dist: './dist',
+	dev: './dev',
 	build: './build',
 	css: '/css',
 	scripts: {
@@ -43,33 +45,43 @@ const handleError = err => {
 gulp.task('browsersync', () => browsersync(serverConfig));
 
 gulp.task('clean', async () => {
-    del([paths.dist, paths.build], { force: true })
+    del([paths.dev, paths.build], { force: true });
 });
 
 gulp.task('scripts', async () => {
     gulp.src(paths.scripts.entry)
     .pipe(plumber({ errorHandler: handleError }))
     .pipe(webpackStream(webpackConfig, webpack))
-    .pipe(gulp.dest(handleNodeEnvPath(paths.dist, paths.build)))
+    .pipe(gulp.dest(handleNodeEnvPath(paths.dev, paths.build)))
 });
 
 gulp.task('html', async () => {
-    gulp.src([handlePath(paths.src, '/views/**/*.html')])
+    gulp.src([handlePath(paths.src, '/views/**/*.html'), excludePath('**', '/shared/**/*')])
     .pipe(nunjucks({
         path: [handlePath(paths.src, '/views')]
       }))
     .pipe(plumber({ errorHandler: handleError }))
-    .pipe(gulp.dest(handleNodeEnvPath(paths.dist, paths.build)))
+    .pipe(gulpif(!isDevEnv, htmlmin({ collapseWhitespace: true, removeComments: true })))
+    .pipe(gulp.dest(handleNodeEnvPath(paths.dev, paths.build)))
 });
 
 gulp.task('sass', async () => {
+    const postCSSPlugins = [
+      require('autoprefixer')({
+        browsers: ['last 3 versions'],
+      }),
+      require('postcss-flexibility'),
+      require('postcss-pxtorem'),
+      require('gulp-cssnano'),
+    ];
     gulp.src([handlePath(paths.src, '/sass/**/*.scss')])
     .pipe(plumber({ errorHandler: handleError }))
     .pipe(gulpif(isDevEnv, sourcemaps.init()))
     .pipe(sass({ outputStyle: isDevEnv ? 'compact' : 'compressed'}).on('error', handleError))
-    .pipe(autoprefixer('last 3 versions'))
+    .pipe(postcss(postCSSPlugins))
+    .pipe(gulprename('main.min.css'))
     .pipe(gulpif(isDevEnv, sourcemaps.write()))
-    .pipe(gulp.dest(handleNodeEnvPath(handlePath(paths.dist, paths.css), handlePath(paths.build, paths.css))))
+    .pipe(gulp.dest(handleNodeEnvPath(handlePath(paths.dev, paths.css), handlePath(paths.build, paths.css))))
 });
 
 gulp.task('images', async () => {
@@ -112,7 +124,7 @@ gulp.task('images', async () => {
 			})
 		])
     ))
-    .pipe(gulp.dest(handleNodeEnvPath(handlePath(paths.dist, '/images'), handlePath(paths.build, '/images'))))
+    .pipe(gulp.dest(handleNodeEnvPath(handlePath(paths.dev, '/images'), handlePath(paths.build, '/images'))))
 });
 
 gulp.task('watch', async () => {

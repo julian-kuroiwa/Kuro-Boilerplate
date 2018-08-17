@@ -1,10 +1,10 @@
 module.exports = {
 	files: [
-		'./dist/**/*.css',
-		'./dist/**/*.js',
-		'./dist/**/*.html'
+		'./dev/**/*.css',
+		'./dev/**/*.js',
+		'./dev/**/*.html'
 	],
 	server: {
-		baseDir: './dist',
+		baseDir: './dev',
 	},
 };

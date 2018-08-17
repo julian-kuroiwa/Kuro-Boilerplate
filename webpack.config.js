@@ -1,7 +1,7 @@
 import UglifyJsPlugin from 'uglifyjs-webpack-plugin';
 import webpack from 'webpack';
 
-const { env, isDevEnv } = require('./node-env');
+import { env, isDevEnv } from './node-env';
 
 const plugins = [
 	new webpack.ProvidePlugin({
