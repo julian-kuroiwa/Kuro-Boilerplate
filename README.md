@@ -1,6 +1,6 @@
 # Kuro Boilerplate
 
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/julian-kuroiwa/Kuro-Boilerplate/blob/master/LICENSE.md)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE.md)
 
 This project uses ES6, Webpack, Nunjucks, SASS, PostCSS, Gulp and Browsersync.
 
