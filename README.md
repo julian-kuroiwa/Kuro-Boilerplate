@@ -69,11 +69,11 @@ This project also uses [Husky](https://github.com/typicode/husky) to prevent com
 
 - `npm start`: run all tasks and initialize watch for changes and a server
 - `npm run build`: run all tasks and deploy files to gh-pages
-- `gulp js`: execute js files
+- `gulp scripts`: execute js files
 - `gulp html`: compile html files
 - `gulp sass`: compile sass files
 - `gulp images`: compress image files
-- `gulp browser-sync`: initialize a server
+- `gulp browsersync`: initialize a server
 - `gulp watch`: call for watch files
 
 ## Contributing
