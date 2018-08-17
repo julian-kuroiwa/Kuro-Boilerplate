@@ -39,7 +39,7 @@ With the commands above, you have everything to start.
 ├── dev/build
 │   ├── css/
 │   │   └── main.min.css
-│   ├── img/
+│   ├── images/
 │   ├── scripts/
 │   │   └── main.min.js
 │   ├── index.html
