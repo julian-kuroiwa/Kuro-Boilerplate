@@ -1,14 +1,4 @@
 import gulp from 'gulp';
-import notify from 'gulp-notify';
-import nunjucks from 'gulp-nunjucks-render';
-import htmlmin from 'gulp-htmlmin';
-import sass from 'gulp-sass';
-import postcss from 'gulp-postcss';
-import sourcemaps from 'gulp-sourcemaps';
-import plumber from 'gulp-plumber';
-import imagemin from 'gulp-imagemin';
-import gulpif from 'gulp-if';
-import gulprename from 'gulp-rename';
 import del from 'del';
 import browsersync from 'browser-sync';
 import webpackStream from 'webpack-stream';
@@ -17,6 +7,11 @@ import webpack from 'webpack';
 import { isDevEnv } from './node-env';
 import serverConfig from './server-config';
 import webpackConfig from './webpack.config';
+
+const plugins = require("gulp-load-plugins")({
+  pattern: ['gulp-*', 'gulp.*'],
+  replaceString: /\bgulp[\-.]/
+});
 
 const paths = {
 	src: './src',
@@ -33,7 +28,7 @@ const excludePath = (defaultPath, additionalPath) => '!' + handlePath(defaultPat
 const handleNodeEnvPath = (devPath, prodPath) => isDevEnv ? devPath : prodPath;
 
 const handleError = err => {
-	notify.onError({
+	plugins.notify.onError({
 		title: 'Gulp',
 		subtitle: 'Failure!',
 		message: 'Error: <%= error.message %>'
@@ -50,18 +45,18 @@ gulp.task('clean', async () => {
 
 gulp.task('scripts', async () => {
     gulp.src(paths.scripts.entry)
-    .pipe(plumber({ errorHandler: handleError }))
+    .pipe(plugins.plumber({ errorHandler: handleError }))
     .pipe(webpackStream(webpackConfig, webpack))
     .pipe(gulp.dest(handleNodeEnvPath(paths.dev, paths.build)))
 });
 
 gulp.task('html', async () => {
     gulp.src([handlePath(paths.src, '/views/**/*.html'), excludePath('**', '/shared/**/*')])
-    .pipe(nunjucks({
+    .pipe(plugins.nunjucksRender({
         path: [handlePath(paths.src, '/views')]
       }))
-    .pipe(plumber({ errorHandler: handleError }))
-    .pipe(gulpif(!isDevEnv, htmlmin({ collapseWhitespace: true, removeComments: true })))
+    .pipe(plugins.plumber({ errorHandler: handleError }))
+    .pipe(plugins.if(!isDevEnv, plugins.htmlmin({ collapseWhitespace: true, removeComments: true })))
     .pipe(gulp.dest(handleNodeEnvPath(paths.dev, paths.build)))
 });
 
@@ -75,36 +70,37 @@ gulp.task('sass', async () => {
       require('gulp-cssnano'),
     ];
     gulp.src([handlePath(paths.src, '/sass/**/*.scss')])
-    .pipe(plumber({ errorHandler: handleError }))
-    .pipe(gulpif(isDevEnv, sourcemaps.init()))
-    .pipe(sass({ outputStyle: isDevEnv ? 'compact' : 'compressed'}).on('error', handleError))
-    .pipe(postcss(postCSSPlugins))
-    .pipe(gulprename('main.min.css'))
-    .pipe(gulpif(isDevEnv, sourcemaps.write()))
+    .pipe(plugins.plumber({ errorHandler: handleError }))
+    .pipe(plugins.sassLint())
+    .pipe(plugins.if(isDevEnv, plugins.sourcemaps.init()))
+    .pipe(plugins.sass({ outputStyle: isDevEnv ? 'compact' : 'compressed'}).on('error', handleError))
+    .pipe(plugins.postcss(postCSSPlugins))
+    .pipe(plugins.rename('main.min.css'))
+    .pipe(plugins.if(isDevEnv, plugins.sourcemaps.write()))
     .pipe(gulp.dest(handleNodeEnvPath(handlePath(paths.dev, paths.css), handlePath(paths.build, paths.css))))
 });
 
 gulp.task('images', async () => {
     gulp.src([handlePath(paths.src, '/images/**/*')])
-    .pipe(gulpif(isDevEnv, imagemin([
-			imagemin.gifsicle({
+    .pipe(plugins.if(isDevEnv, plugins.imagemin([
+			plugins.imagemin.gifsicle({
 				interlaced: true
 			}),
-			imagemin.jpegtran({
+			plugins.imagemin.jpegtran({
 				progressive: true
 			})
 		]),
-		imagemin([
-			imagemin.gifsicle({
+		plugins.imagemin([
+			plugins.imagemin.gifsicle({
 				interlaced: true
 			}),
-			imagemin.jpegtran({
+			plugins.imagemin.jpegtran({
 				progressive: true
 			}),
-			imagemin.optipng({
+			plugins.imagemin.optipng({
 				optimizationLevel: 5
 			}),
-			imagemin.svgo({
+			plugins.imagemin.svgo({
 				plugins: [
 					{ cleanupAttrs: true },
 					{ removeDoctype: true },
@@ -127,6 +123,11 @@ gulp.task('images', async () => {
     .pipe(gulp.dest(handleNodeEnvPath(handlePath(paths.dev, '/images'), handlePath(paths.build, '/images'))))
 });
 
+gulp.task('fonts', async () => {
+  gulp.src([handlePath(paths.src, '/fonts/**/*.{woff,woff2}')])
+  .pipe(gulp.dest(handleNodeEnvPath(handlePath(paths.dev, '/fonts'), handlePath(paths.build, '/fonts'))))
+});
+
 gulp.task('watch', async () => {
 	gulp.watch(handlePath(paths.src, '/**/*.js'), gulp.series('scripts'));
 	gulp.watch(handlePath(paths.src, '/views/**/*.html'), gulp.series('html'));
@@ -140,7 +141,8 @@ gulp.task('build',
 		'images',
 		'sass',
 		'html',
-		'scripts'
+    'scripts',
+    'fonts'
 	)
 );
 
@@ -151,7 +153,8 @@ gulp.task('default',
 			'images',
 			'sass',
 			'html',
-			'scripts',
+      'scripts',
+      'fonts',
 			'watch',
 			'browsersync'
 		)
