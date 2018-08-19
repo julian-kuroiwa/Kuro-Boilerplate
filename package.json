@@ -8,8 +8,6 @@
     "build": "cross-env NODE_ENV=production gulp -- build",
     "lint": "./node_modules/.bin/eslint src/js/**/*.js",
     "fix": "./node_modules/.bin/eslint src --fix",
-    "precommit": "npm run lint",
-    "prepush": "npm run lint"
   },
   "repository": {
     "type": "git",
