@@ -25,11 +25,9 @@ const paths = {
   },
 };
 
-const handlePath = (defaultPath, additionalPath) => defaultPath + additionalPath;
+const handlePath = (defaultPath, additionalPath) => (defaultPath + additionalPath);
 const excludePath = (defaultPath, additionalPath) => `!${handlePath(defaultPath, additionalPath)}`;
-const handleNodeEnvPath = (devPath, prodPath) => {
-  return isDevEnv ? devPath : prodPath;
-};
+const handleNodeEnvPath = (devPath, prodPath) => (isDevEnv ? devPath : prodPath);
 
 const handleError = err => {
   plugins.notify.onError({
@@ -43,13 +41,13 @@ const handleError = err => {
 
 gulp.task('browsersync', () => browsersync(serverConfig));
 
-gulp.task('clean', async () => {
-  del([`${paths.dev}/**/*`, paths.build], {
+gulp.task('clean', async() => {
+  del([`${paths.dev}/**/*.*`, `${paths.build}/**/*.*`], {
     force: true,
   });
 });
 
-gulp.task('scripts', async () => {
+gulp.task('scripts', async() => {
     gulp.src(paths.scripts.entry)
     .pipe(plugins.plumber({
       errorHandler: handleError,
@@ -58,8 +56,8 @@ gulp.task('scripts', async () => {
     .pipe(gulp.dest(handleNodeEnvPath(paths.dev, paths.build)));
 });
 
-gulp.task('html', async () => {
-    gulp.src([handlePath(paths.src, '/views/**/*.html'), excludePath('**', '/shared/**/*')])
+gulp.task('html', async() => {
+    gulp.src([handlePath(paths.src, '/views/**/*.html'), excludePath('**', '/shared/**/*'), excludePath('**', '/partials/**/*')])
     .pipe(plugins.nunjucksRender({
         path: [handlePath(paths.src, '/views')],
       }))
@@ -73,7 +71,7 @@ gulp.task('html', async () => {
     .pipe(gulp.dest(handleNodeEnvPath(paths.dev, paths.build)));
 });
 
-gulp.task('sass', async () => {
+gulp.task('sass', async() => {
     const postCSSPlugins = [
       require('autoprefixer')({
         browsers: ['last 3 versions'],
@@ -98,7 +96,7 @@ gulp.task('sass', async () => {
     .pipe(gulp.dest(handleNodeEnvPath(handlePath(paths.dev, paths.css), handlePath(paths.build, paths.css))));
 });
 
-gulp.task('images', async () => {
+gulp.task('images', async() => {
   gulp.src([handlePath(paths.src, '/images/**/*')])
   .pipe(plugins.if(isDevEnv, plugins.imagemin([
     plugins.imagemin.gifsicle({
@@ -162,18 +160,21 @@ gulp.task('images', async () => {
         {
           convertStyleToAttrs: true,
         },
+        {
+          mergePaths: true,
+        },
       ],
     }),
   ])))
   .pipe(gulp.dest(handleNodeEnvPath(handlePath(paths.dev, '/images'), handlePath(paths.build, '/images'))));
 });
 
-gulp.task('fonts', async () => {
+gulp.task('fonts', async() => {
   gulp.src([handlePath(paths.src, '/fonts/**/*.{woff,woff2}')])
   .pipe(gulp.dest(handleNodeEnvPath(handlePath(paths.dev, '/fonts'), handlePath(paths.build, '/fonts'))));
 });
 
-gulp.task('watch', async () => {
+gulp.task('watch', async() => {
   gulp.watch(handlePath(paths.src, '/**/*.js'), gulp.series('scripts'));
   gulp.watch(handlePath(paths.src, '/views/**/*.html'), gulp.series('html'));
   gulp.watch(handlePath(paths.src, '/sass/**/*.scss'), gulp.series('sass'));
