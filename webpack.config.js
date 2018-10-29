@@ -18,42 +18,24 @@ if ( !isDevEnv ) {
 }
 
 module.exports = {
-	mode: env ? 'development' : 'production',
-
+  mode: env ? 'development' : 'production',
+  devtool: isDevEnv ? 'source-map' : false,
 	entry: {
-		app: [
-			'babel-polyfill',
-			'./src/js/main.js'
-		]
-	},
-
-	devtool: isDevEnv ? 'source-map' : false,
-
+		app: './src/js/main.js'
+  },
 	output: {
 		filename: 'js/[name].min.js'
-	},
-
-	watch: isDevEnv,
-
-	module: {
-		rules: [
-			{
-				test: /\.js$/,
-				exclude: /node_modules/,
-                loader: 'babel-loader',
-				options: {
-					babelrc: false,
-					presets: [
-						['env', {
-							targets: {
-								browsers: ['last 3 versions']
-							}
-						}]
-					]
-				}
-			}
-		]
-	},
-
-	plugins: plugins
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader'
+        }
+      }
+    ]
+  },
+  plugins: plugins
 };

@@ -1,3 +1,5 @@
+import '@babel/polyfill';
+
 import gulp from 'gulp';
 import del from 'del';
 import browsersync from 'browser-sync';
